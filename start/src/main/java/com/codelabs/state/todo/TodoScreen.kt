@@ -146,6 +146,9 @@ fun TodoInputTextField(text: String,onTextChange: (String) -> Unit, modifier: Mo
 @Composable
 fun TodoItemInput (onItemComplete: (TodoItem) -> Unit){
     val (text, setText) = remember{ mutableStateOf("")}
+    val (icon, setIcon) = remember{ mutableStateOf(TodoIcon.Default)}
+    val iconsVisible = text.isNotBlank()
+
     //onItemComplete is an event will fire when an item is completed by the user
     Column {
         Row(
@@ -153,12 +156,19 @@ fun TodoItemInput (onItemComplete: (TodoItem) -> Unit){
                 .padding(horizontal = 16.dp)
                 .padding(top = 16.dp)
         ) {
-            TodoInputTextField(
+//            TodoInputTextField(
+//                text = text,
+//                onTextChange = setText,
+//                Modifier
+//                    .weight(1f)
+//                    .padding(top = 16.dp)
+//            )
+            TodoInputText(
                 text = text,
                 onTextChange = setText,
-                Modifier
+                modifier = Modifier
                     .weight(1f)
-                    .padding(top = 16.dp)
+                    .padding(end = 8.dp)
             )
             //edit TodoItemInput
             TodoEditButton(
